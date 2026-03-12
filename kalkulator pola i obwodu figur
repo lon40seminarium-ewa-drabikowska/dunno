@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+<meta charset="UTF-8">
+<title>kalkulator pola i obwodu figur</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #e6c5d7;
+    text-align: center;
+}
+
+h1 {
+    color: rgb(118, 27, 68);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.box {
+    background: #c75bb0;
+    padding: 10px;
+    width: 235px;
+    border-radius: 10px;
+}
+
+input {
+    width: 70%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 10px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>obliczanie pól i obwodów figur geometrycznych</h1>
+
+<div class="container">
+    
+    <div class="box">
+        <h2>Okrąg</h2>
+        <input type="number" id="circleR" placeholder="Promień r">
+        <button onclick="circle()">Oblicz</button>
+        <div class="result" id="circleResult"></div>
+    </div>
+
+     <div class="box">
+        <h2>Trójkąt</h2>
+        <input type="number" id="triA" placeholder="Bok a">
+        <input type="number" id="triB" placeholder="Bok b">
+        <input type="number" id="triC" placeholder="Bok c">
+        <input type="number" id="triH" placeholder="Wysokość do boku a">
+        <button onclick="triangle()">Oblicz</button>
+        <div class="result" id="triResult"></div>
+    </div>
+
+    <div class="box">
+        <h2>Prostokąt</h2>
+        <input type="number" id="rectA" placeholder="Bok a">
+        <input type="number" id="rectB" placeholder="Bok b">
+        <button onclick="rectangle()">Oblicz</button>
+        <div class="result" id="rectResult"></div>
+    </div>
+
+    <div class="box">
+        <h2>Trapez</h2>
+        <input type="number" id="trapA" placeholder="Podstawa a">
+        <input type="number" id="trapB" placeholder="Podstawa b">
+        <input type="number" id="trapC" placeholder="Bok c">
+        <input type="number" id="trapD" placeholder="Bok d">
+        <input type="number" id="trapH" placeholder="Wysokość h">
+        <button onclick="trapezoid()">Oblicz</button>
+        <div class="result" id="trapResult"></div>
+    </div>
+
+
+</div>
+
+<script>
+
+function rectangle() {
+    let a = parseFloat(document.getElementById("rectA").value);
+    let b = parseFloat(document.getElementById("rectB").value);
+
+    if (isNaN(a) || isNaN(b)) {
+        document.getElementById("rectResult").innerHTML = "Podaj obie wartości!";
+        return;
+    }
+
+    let area = a * b;
+    let perimeter = 2 * (a + b);
+
+    document.getElementById("rectResult").innerHTML =
+        "Pole: " + area.toFixed(2) +
+        "<br>Obwód: " + perimeter.toFixed(2);
+}
+
+function triangle() {
+    let a = parseFloat(document.getElementById("triA").value);
+    let b = parseFloat(document.getElementById("triB").value);
+    let c = parseFloat(document.getElementById("triC").value);
+    let h = parseFloat(document.getElementById("triH").value);
+
+    if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(h)) {
+        document.getElementById("triResult").innerHTML = "Podaj wszystkie wartości!";
+        return;
+    }
+
+    let area = (a * h) / 2;
+    let perimeter = a + b + c;
+
+    document.getElementById("triResult").innerHTML =
+        "Pole: " + area.toFixed(2) +
+        "<br>Obwód: " + perimeter.toFixed(2);
+}
+
+function trapezoid() {
+    let a = parseFloat(document.getElementById("trapA").value);
+    let b = parseFloat(document.getElementById("trapB").value);
+    let c = parseFloat(document.getElementById("trapC").value);
+    let d = parseFloat(document.getElementById("trapD").value);
+    let h = parseFloat(document.getElementById("trapH").value);
+
+    if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d) || isNaN(h)) {
+        document.getElementById("trapResult").innerHTML = "Podaj wszystkie wartości!";
+        return;
+    }
+
+    let area = ((a + b) * h) / 2;
+    let perimeter = a + b + c + d;
+
+    document.getElementById("trapResult").innerHTML =
+        "Pole: " + area.toFixed(2) +
+        "<br>Obwód: " + perimeter.toFixed(2);
+}
+
+function circle() {
+    let r = parseFloat(document.getElementById("circleR").value);
+
+    if (isNaN(r)) {
+        document.getElementById("circleResult").innerHTML = "Podaj promień!";
+        return;
+    }
+
+    let area = Math.PI * r * r;
+    let perimeter = 2 * Math.PI * r;
+
+    document.getElementById("circleResult").innerHTML =
+        "Pole: " + area.toFixed(2) +
+        "<br>Obwód: " + perimeter.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
